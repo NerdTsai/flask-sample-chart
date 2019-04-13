@@ -1,6 +1,7 @@
 
-image: nerdtsai/flask-sample-app
-replicaCount: 4
+imagev1: nerdtsai/flask-sample-app-v1
+imagev2: nerdtsai/flask-sample-app-v2
+replicaCount: 1
 
 service:
   portName: flask-port
