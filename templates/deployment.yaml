@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image-v1 }}"
+        image: "{{ .Values.imagev1 }}"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.service.internalPort | int }}
@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image-v2 }}"
+        image: "{{ .Values.imagev2 }}"
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.service.internalPort | int }}
