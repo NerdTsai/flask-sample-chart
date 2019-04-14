@@ -1,15 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata: {{ $fullname := printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" }}
-  name: {{ $fullname }}-v1
+  name: {{ $fullname }}-deployment-v1
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ $fullname }}-deployment
+    version: v1
 spec:
   replicas: {{ default 1 .Values.replicaCount | int }}
   template:
     metadata:
       labels:
-        app: {{ $fullname }}
+        app: {{ $fullname }}-deployment
+        version: v1
     spec:
       containers:
       - name: {{ .Chart.Name }}
@@ -31,15 +34,18 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata: {{ $fullname := printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" }}
-  name: {{ $fullname }}-v2
+  name: {{ $fullname }}-deployment-v2
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ $fullname }}-deployment
+    version: v2
 spec:
   replicas: {{ default 1 .Values.replicaCount | int }}
   template:
     metadata:
       labels:
-        app: {{ $fullname }}
+        app: {{ $fullname }}-deployment
+        version: v2
     spec:
       containers:
       - name: {{ .Chart.Name }}
