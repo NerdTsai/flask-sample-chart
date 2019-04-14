@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: test-flask-sample-deployment
+spec:
+  host: test-flask-sample-chart-deployment
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: test-flask-sample-deployment
+spec:
+  hosts:
+  - test-flask-sample-deployment
+  http:
+  - match:
+    - headers:
+        User-Agent:
+          regex: "Chrom"
+    route:
+    - destination:
+        host: test-flask-sample-deployment
+        subset: v1
+  - route:
+    - destination:
+        host: test-flask-sample-deployment
+        subset: v2
