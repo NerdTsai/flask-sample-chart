@@ -4,7 +4,7 @@ imagev2: nerdtsai/flask-sample-app-v2
 replicaCount: 1
 
 service:
-  portName: flask-port
+  portName: http-flask
   type: LoadBalancer
   internalPort: 5000
   externalPort: 5000
